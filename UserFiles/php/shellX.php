@@ -85,19 +85,19 @@ class ShellX {
         $workDir = __ROOT__.'/UserFiles/'.$video['user_id'];
         if (!file_exists($workDir)) {
             mkdir($workDir, 0755);
-            // chown($workDir, 'root');
-            // chgrp($workDir, 'root');
+            // chown($workDir, 'www-data');
+            // chgrp($workDir, 'www-data');
         }
         $logDir = __ROOT__.'/shellLog/'.$videoNameArr[0];
         if (!file_exists($logDir)) {
             // место которое выполняется разово, очень подойдет для выдачи прав оригинальному файлу
-            // chown(__ROOT__.$video['src_origin'], 'root');
-            // chgrp(__ROOT__.$video['src_origin'], 'root');
+            // chown(__ROOT__.$video['src_origin'], 'www-data');
+            // chgrp(__ROOT__.$video['src_origin'], 'www-data');
 
             mkdir($logDir, 0755);
             // меняем юзера и группу папки логов
-            chown($logDir, 'root');
-            chgrp($logDir, 'root');
+            chown($logDir, 'www-data');
+            chgrp($logDir, 'www-data');
         }
         $inwork = false;
         for($i = 1; $i<=12; $i++) {
@@ -141,8 +141,8 @@ class ShellX {
 
         //     if(shell_exec('ffmpeg -y -i "'.$imgPath.'" "'.__ROOT__.'/UserFiles/'.$video['user_id'].'/'.$videoNameArr[0]."/".$videoNameArr[0].'.mp4" 2>&1')) {
         //         // меняем юзера и группу папки
-        //         chown(__ROOT__."/UserFiles/".$video1['user_id']."/".$videoNameArr[0]."/".$videoNameArr[0].".mp4", 'root');
-        //         chgrp(__ROOT__."/UserFiles/".$video1['user_id']."/".$videoNameArr[0]."/".$videoNameArr[0].".mp4", 'root');
+        //         chown(__ROOT__."/UserFiles/".$video1['user_id']."/".$videoNameArr[0]."/".$videoNameArr[0].".mp4", 'www-data');
+        //         chgrp(__ROOT__."/UserFiles/".$video1['user_id']."/".$videoNameArr[0]."/".$videoNameArr[0].".mp4", 'www-data');
         //         $resM4V = mysql_query('
         //             UPDATE 
         //                 shell_tasks
@@ -267,8 +267,8 @@ VIDEO INFO end -------------------------------------
             if (!file_exists($gDir)) {
                 mkdir($gDir, 0755);
                 // меняем юзера и группу папки
-                chown($gDir, 'root');
-                chgrp($gDir, 'root');
+                chown($gDir, 'www-data');
+                chgrp($gDir, 'www-data');
             }
             $steps = $steps+1;
             $this->sql->_update_steps_shell_tasks($steps, $id);
@@ -283,11 +283,11 @@ ffmpeg -y -progress "'.$logDir.'/step1.txt" -i "'.$imgPath.'" -vf "'.$scaleStrin
                 $steps = $steps+1;
                 $this->sql->_update_steps_shell_tasks($steps, $id);
                 // меняем юзера и группу лога шага
-                chown($logDir."/step1.txt", 'root');
-                chgrp($logDir."/step1.txt", 'root');
+                chown($logDir."/step1.txt", 'www-data');
+                chgrp($logDir."/step1.txt", 'www-data');
                 // меняем юзера и группу файла
-                chown(__ROOT__.'/UserFiles/'.$video1["user_id"].'/generated/'.$videoNameArr[0].'nb.'.$videoNameArr[1], 'root');
-                chgrp(__ROOT__.'/UserFiles/'.$video1["user_id"].'/generated/'.$videoNameArr[0].'nb.'.$videoNameArr[1], 'root');
+                chown(__ROOT__.'/UserFiles/'.$video1["user_id"].'/generated/'.$videoNameArr[0].'nb.'.$videoNameArr[1], 'www-data');
+                chgrp(__ROOT__.'/UserFiles/'.$video1["user_id"].'/generated/'.$videoNameArr[0].'nb.'.$videoNameArr[1], 'www-data');
 
                 $src_noblack = '/UserFiles/'.$video1["user_id"].'/generated/'.$videoNameArr[0].'nb.'.$videoNameArr[1];
                 $resEndGen = $this->sql->_update3_shell_tasks_shell_tasks($src_noblack, $id);
@@ -409,10 +409,10 @@ echo '
                                 
 ";
                                     // меняем юзера и группу картинки quad
-                                    // chown(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/", 'root');
-                                    // chgrp(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/", 'root');
-                                    // chown(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/".$a[3]."cut.jpeg", 'root');
-                                    // chgrp(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/".$a[3]."cut.jpeg", 'root');
+                                    // chown(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/", 'www-data');
+                                    // chgrp(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/", 'www-data');
+                                    // chown(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/".$a[3]."cut.jpeg", 'www-data');
+                                    // chgrp(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/".$a[3]."cut.jpeg", 'www-data');
 
                                     // делаем блюр версию
                                     if(shell_exec("convert ".$posterQuad." -blur 0x108 ".$posterQBlur." | echo DonePosterQuadBlur 2>&1")) {
@@ -501,8 +501,8 @@ echo '
                                 if(shell_exec("ffmpeg -i ".$a[1]." -qscale:v 1 -ss 00:00:00 -vframes 1 -vf scale=iw:ih -codec libwebp -lossless 0 -quality 100 ".$poster." 2>&1")) {
                                     
                                     // меняем юзера и группу картинки quad
-                                    chown(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/".$a[3].".webp", 'root');
-                                    chgrp(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/".$a[3].".webp", 'root');
+                                    chown(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/".$a[3].".webp", 'www-data');
+                                    chgrp(__ROOT__."/UserFiles/".$a[2]."/thumbnailForVideo/".$a[3].".webp", 'www-data');
 
                                     // делаем блюр версию
                                     if(shell_exec("convert ".$poster." -blur 0x108 ".$posterBlur." | echo DonePosterBlur 2>&1")) {
@@ -574,8 +574,8 @@ echo '
                             if (!file_exists($cDir)) {
                                 mkdir($cDir, 0755);
                                 // меняем юзера и группу папки
-                                chown($cDir, 'root');
-                                chgrp($cDir, 'root');
+                                chown($cDir, 'www-data');
+                                chgrp($cDir, 'www-data');
                             }
         
                             $steps = $steps+1;
@@ -634,15 +634,15 @@ echo '
                                             if (!file_exists($dir500k1)) {
                                                 mkdir($dir500k1, 0755);
                                                 // меняем юзера и группу папки
-                                                chown($dir500k1, 'root');
-                                                chgrp($dir500k1, 'root');
+                                                chown($dir500k1, 'www-data');
+                                                chgrp($dir500k1, 'www-data');
                                             }
                                             $dir500k = __ROOT__.'/UserFiles/'.$video3['user_id'].'/500k/'.$a[3].'/';
                                             if (!file_exists($dir500k)) {
                                                 mkdir($dir500k, 0755);
                                                 // меняем юзера и группу папки
-                                                chown($dir500k, 'root');
-                                                chgrp($dir500k, 'root');
+                                                chown($dir500k, 'www-data');
+                                                chgrp($dir500k, 'www-data');
                                             }
                         // $file = __ROOT__.'/UserFiles/run.txt';
                         // file_put_contents($file, 'Запускаем генерацию видео под поток 500К битрейт (16:9) ', FILE_APPEND);     
@@ -657,11 +657,11 @@ echo '
                                                 $steps = $steps+1;
                                                 $sql->_update_steps_shell_tasks($steps, $id);
                                                 // меняем юзера и группу лога шага
-                                                chown($logDir."/step3.txt", 'root');
-                                                chgrp($logDir."/step3.txt", 'root');
+                                                chown($logDir."/step3.txt", 'www-data');
+                                                chgrp($logDir."/step3.txt", 'www-data');
                                                 // меняем юзера и группу папки логов
-                                                chown($dir500k.$a[3]."-500k.".$a[8], 'root');
-                                                chgrp($dir500k.$a[3]."-500k.".$a[8], 'root');
+                                                chown($dir500k.$a[3]."-500k.".$a[8], 'www-data');
+                                                chgrp($dir500k.$a[3]."-500k.".$a[8], 'www-data');
 
                                                 $src_500 = '/UserFiles/'.$video3['user_id'].'/500k/'.$a[3].'/'.$a[3].'-500k.'.$a[8];
 
@@ -695,8 +695,8 @@ echo '
                                                             if (!file_exists($dirStreamPl500k)) {
                                                                 mkdir($dirStreamPl500k, 0755);
                                                                 // меняем юзера и группу папки
-                                                                chown($dirStreamPl500k, 'root');
-                                                                chgrp($dirStreamPl500k, 'root');
+                                                                chown($dirStreamPl500k, 'www-data');
+                                                                chgrp($dirStreamPl500k, 'www-data');
                                                             }
 
                                                             $steps = $steps+1;
@@ -715,7 +715,7 @@ echo '
                                                             
                                                                 $steps = $steps+2;
                                                                 $sql->_update_steps_shell_tasks($steps, $id);
-                                                                shell_exec("chown -R root:root '".$dirStreamPl500k."*' 2>&1");
+                                                                shell_exec("chown -R www-data:www-data '".$dirStreamPl500k."*' 2>&1");
                                                                 $steps = $steps+1;
                                                                 $sql->_update_steps_shell_tasks($steps, $id);
                                                                 // Генератор мастер плейлиста
@@ -739,8 +739,8 @@ $playlist = '#EXTM3U
                                                         
                                                                 file_put_contents($file, $playlist);
                                                                 // меняем юзера и группу плейлиста
-                                                                chown($file, 'root');
-                                                                chgrp($file, 'root');
+                                                                chown($file, 'www-data');
+                                                                chgrp($file, 'www-data');
 
                                                                 $m3u8 = '/UserFiles/'.$video5["user_id"].'/'.$a[3].'.m3u8';
                                                                 $resEndGen500kStream = $sql->_update2_shell3_tasks_shell_tasks($m3u8, $id);
@@ -834,11 +834,11 @@ echo '
                                 $sql->_update_steps_shell_tasks($steps, $id);
         
                                 // меняем юзера и группу лога шага
-                                chown($logDir."/step2.txt", 'root');
-                                chgrp($logDir."/step2.txt", 'root');
+                                chown($logDir."/step2.txt", 'www-data');
+                                chgrp($logDir."/step2.txt", 'www-data');
                                 // меняем юзера и группу папки
-                                chown(__ROOT__."/UserFiles/".$video1['user_id']."/cut/".$a[3]."cut.".$a[8], 'root');
-                                chgrp(__ROOT__."/UserFiles/".$video1['user_id']."/cut/".$a[3]."cut.".$a[8], 'root');
+                                chown(__ROOT__."/UserFiles/".$video1['user_id']."/cut/".$a[3]."cut.".$a[8], 'www-data');
+                                chgrp(__ROOT__."/UserFiles/".$video1['user_id']."/cut/".$a[3]."cut.".$a[8], 'www-data');
                                 
                                 $src_quad = '/UserFiles/'.$video1["user_id"].'/cut/'.$a[3].'cut.'.$a[8];
                                 $resEndCut = $sql->_update5_shell_tasks_shell_tasks($src_quad, $id);
@@ -871,23 +871,23 @@ echo '
                                             if (!file_exists($dirStreamPl500k)) {
                                                 mkdir($dirStreamPl500k, 0755);
                                                 // меняем юзера и группу папки
-                                                chown($dirStreamPl500k, 'root');
-                                                chgrp($dirStreamPl500k, 'root');
+                                                chown($dirStreamPl500k, 'www-data');
+                                                chgrp($dirStreamPl500k, 'www-data');
                                             }
                                             $dirQuad500k1 = __ROOT__.'/UserFiles/'.$video4['user_id'].'/500k/cut/';
                                             if (!file_exists($dirQuad500k1)) {
                                                 mkdir($dirQuad500k1, 0755);
                                                 // меняем юзера и группу папки
-                                                chown($dirQuad500k1, 'root');
-                                                chgrp($dirQuad500k1, 'root');
+                                                chown($dirQuad500k1, 'www-data');
+                                                chgrp($dirQuad500k1, 'www-data');
                                             }
 
                                             $dirQuad500k = __ROOT__.'/UserFiles/'.$video4['user_id'].'/500k/cut/'.$a[3].'/';
                                             if (!file_exists($dirQuad500k)) {
                                                 mkdir($dirQuad500k, 0755);
                                                 // меняем юзера и группу папки
-                                                chown($dirQuad500k, 'root');
-                                                chgrp($dirQuad500k, 'root');
+                                                chown($dirQuad500k, 'www-data');
+                                                chgrp($dirQuad500k, 'www-data');
                                             }
 
                                             $steps = $steps+1;
@@ -903,11 +903,11 @@ echo '
                                                 $sql->_update_steps_shell_tasks($steps, $id);
 
                                                 // меняем юзера и группу лога шага
-                                                chown($logDir."/step4.txt", 'root');
-                                                chgrp($logDir."/step4.txt", 'root');
+                                                chown($logDir."/step4.txt", 'www-data');
+                                                chgrp($logDir."/step4.txt", 'www-data');
                                                 // меняем юзера и группу папки логов
-                                                chown($dirQuad500k.$a[3]."-q500k.".$a[8], 'root');
-                                                chgrp($dirQuad500k.$a[3]."-q500k.".$a[8], 'root');
+                                                chown($dirQuad500k.$a[3]."-q500k.".$a[8], 'www-data');
+                                                chgrp($dirQuad500k.$a[3]."-q500k.".$a[8], 'www-data');
 
                                                 $src_quad_500 = '/UserFiles/'.$video4['user_id'].'/500k/cut/'.$a[3].'/'.$a[3].'-q500k.'.$a[8];
                                                 $resEndGen500q = $sql->_update4_shell2_tasks_shell_tasks($src_quad_500, $id);
@@ -962,8 +962,8 @@ echo '
                                                             if (!file_exists($dirStreamCutPl500k)) {
                                                                 mkdir($dirStreamCutPl500k, 0755);
                                                                 // меняем юзера и группу папки
-                                                                chown($dirStreamCutPl500k, 'root');
-                                                                chgrp($dirStreamCutPl500k, 'root');
+                                                                chown($dirStreamCutPl500k, 'www-data');
+                                                                chgrp($dirStreamCutPl500k, 'www-data');
                                                             }
                                                             $steps = $steps+1;
                                                             $sql->_update_steps_shell_tasks($steps, $id);
@@ -975,7 +975,7 @@ echo '
 ';
                                                                 $steps = $steps+2;
                                                                 $sql->_update_steps_shell_tasks($steps, $id);
-                                                                shell_exec("chown -R root:root '".$dirStreamCutPl500k."*' 2>&1");
+                                                                shell_exec("chown -R www-data:www-data '".$dirStreamCutPl500k."*' 2>&1");
                                                                 $steps = $steps+1;
                                                                 $sql->_update_steps_shell_tasks($steps, $id);
                                                                 // Генератор мастер плейлиста
@@ -998,8 +998,8 @@ $playlist = '#EXTM3U
 cut/500/pl500.m3u8';
                                                                 file_put_contents($file, $playlist);
                                                                 // меняем юзера и группу плейлиста
-                                                                chown($file, 'root');
-                                                                chgrp($file, 'root');
+                                                                chown($file, 'www-data');
+                                                                chgrp($file, 'www-data');
                                                                 $m3u8_quad = '/UserFiles/'.$video6["user_id"].'/'.$a[3].'-quad.m3u8';
                                                                 $resEndGen500kStream = $sql->_update5_shell3_tasks_shell_tasks($m3u8_quad, $id);
 
@@ -1023,8 +1023,8 @@ cut/500/pl500.m3u8';
                                                                 
 //                                                             file_put_contents($file, $playlist);
 //                                                             // меняем юзера и группу плейлиста
-//                                                             chown($file, 'root');
-//                                                             chgrp($file, 'root');
+//                                                             chown($file, 'www-data');
+//                                                             chgrp($file, 'www-data');
 
                                                             $parseInfoString = shell_exec("ffprobe ".__ROOT__.$video6['src_quad']." -v quiet -show_format -show_streams 2>&1");
                                                             $steps = $steps+1;
@@ -1041,8 +1041,8 @@ cut/500/pl500.m3u8';
                                                             
                                                             file_put_contents($file, $playlist);
                                                             // меняем юзера и группу плейлиста
-                                                            chown($file, 'root');
-                                                            chgrp($file, 'root');
+                                                            chown($file, 'www-data');
+                                                            chgrp($file, 'www-data');
                                                             
                                                             $uid = $video6["user_id"];
                                                             $video = $sql->_select2_shell_tasks_shell_tasks($id);
