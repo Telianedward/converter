@@ -27,8 +27,8 @@ for ($times = 0; $times < 4; ++$times) {
         if (!file_exists($logDir)) {
             mkdir($logDir, 0755);
             // меняем юзера и группу папки логов
-            chown($logDir, 'www-data');
-            chgrp($logDir, 'www-data');
+            chown($logDir, 'root');
+            chgrp($logDir, 'root');
         }
 
         $video5 = $sql->_select2_shell_tasks_shell_tasks($id);
@@ -51,8 +51,8 @@ for ($times = 0; $times < 4; ++$times) {
                     if (!file_exists($dirStreamPl500k)) {
                         mkdir($dirStreamPl500k, 0755);
                         // меняем юзера и группу папки
-                        chown($dirStreamPl500k, 'www-data');
-                        chgrp($dirStreamPl500k, 'www-data');
+                        chown($dirStreamPl500k, 'root');
+                        chgrp($dirStreamPl500k, 'root');
                     }
 
                     $steps = $steps+1;
@@ -62,7 +62,7 @@ for ($times = 0; $times < 4; ++$times) {
 
                         $steps = $steps+2;
                         $sql->_update_steps_shell_tasks($steps, $id);
-                        shell_exec("chown -R www-data:www-data '".$dirStreamPl500k."*' 2>&1");
+                        shell_exec("chown -R root:root '".$dirStreamPl500k."*' 2>&1");
                         $steps = $steps+1;
                         $sql->_update_steps_shell_tasks($steps, $id);
                         // Генератор мастер плейлиста
@@ -86,8 +86,8 @@ $playlist = '#EXTM3U
                 
                         file_put_contents($file, $playlist);
                         // меняем юзера и группу плейлиста
-                        chown($file, 'www-data');
-                        chgrp($file, 'www-data');
+                        chown($file, 'root');
+                        chgrp($file, 'root');
 
                         $m3u8 = '/UserFiles/'.$video5["user_id"].'/'.$videoNameArr[0].'.m3u8';
                         $resEndGen500kStream = $sql->_update2_shell3_tasks_shell_tasks($m3u8, $id);
@@ -140,15 +140,15 @@ $playlist = '#EXTM3U
                     if (!file_exists($dirStreamCutPl500k)) {
                         mkdir($dirStreamCutPl500k, 0755);
                         // меняем юзера и группу папки
-                        chown($dirStreamCutPl500k, 'www-data');
-                        chgrp($dirStreamCutPl500k, 'www-data');
+                        chown($dirStreamCutPl500k, 'root');
+                        chgrp($dirStreamCutPl500k, 'root');
                     }
                     $steps = $steps+1;
                     $sql->_update_steps_shell_tasks($steps, $id);
                     if(shell_exec("ffmpeg -y -re -i ".__ROOT__.$video6['src_quad_500']." -codec copy -map 0 -f segment -segment_list '".$dirStreamCutPl500k."pl500.m3u8' -segment_list_flags +live -segment_time 10 '".$dirStreamCutPl500k.$videoNameArr[0]."-%03d.ts' 2>&1")) {
                         $steps = $steps+2;
                         $sql->_update_steps_shell_tasks($steps, $id);
-                        shell_exec("chown -R www-data:www-data '".$dirStreamCutPl500k."*' 2>&1");
+                        shell_exec("chown -R root:root '".$dirStreamCutPl500k."*' 2>&1");
                         $steps = $steps+1;
                         $sql->_update_steps_shell_tasks($steps, $id);
                         // Генератор мастер плейлиста
@@ -171,8 +171,8 @@ $playlist = '#EXTM3U
 cut/500/pl500.m3u8?id='.$videoNameArr[0];
                         file_put_contents($file, $playlist);
                         // меняем юзера и группу плейлиста
-                        chown($file, 'www-data');
-                        chgrp($file, 'www-data');
+                        chown($file, 'root');
+                        chgrp($file, 'root');
                         $m3u8_quad = '/UserFiles/'.$video6["user_id"].'/'.$videoNameArr[0].'-quad.m3u8';
                         $resEndGen500kStream = $sql->_update5_shell3_tasks_shell_tasks($m3u8_quad, $id);
 

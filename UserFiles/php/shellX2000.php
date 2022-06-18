@@ -45,8 +45,8 @@ echo '
     if (!file_exists($logDir)) {
         mkdir($logDir, 0755);
         // меняем юзера и группу папки логов
-        chown($logDir, 'www-data');
-        chgrp($logDir, 'www-data');
+        chown($logDir, 'root');
+        chgrp($logDir, 'root');
     }
 
     $video11 = $sql->_select2X2000_shell_tasks_shell_tasks($id);
@@ -67,15 +67,15 @@ echo '
                 if (!file_exists($dir2000k1)) {
                     mkdir($dir2000k1, 0755);
                     // меняем юзера и группу папки
-                    chown($dir2000k1, 'www-data');
-                    chgrp($dir2000k1, 'www-data');
+                    chown($dir2000k1, 'root');
+                    chgrp($dir2000k1, 'root');
                 }
                 $dir2000k = __ROOT__.'/UserFiles/'.$video11["user_id"].'/2000k/'.$videoNameArr[0].'/';
                 if (!file_exists($dir2000k)) {
                     mkdir($dir2000k, 0755);
                     // меняем юзера и группу папки
-                    chown($dir2000k, 'www-data');
-                    chgrp($dir2000k, 'www-data');
+                    chown($dir2000k, 'root');
+                    chgrp($dir2000k, 'root');
                 }
                 $steps = $steps+1;
                 $sql->_update_steps_shell_tasks($steps, $id);
@@ -83,11 +83,11 @@ echo '
                     $steps = $steps+1;
                     $sql->_update_steps_shell_tasks($steps, $id);
                     // меняем юзера и группу лога шага
-                    chown($logDir."/step11.txt", 'www-data');
-                    chgrp($logDir."/step11.txt", 'www-data');
+                    chown($logDir."/step11.txt", 'root');
+                    chgrp($logDir."/step11.txt", 'root');
                     // меняем юзера и группу папки логов
-                    chown($dir2000k.$videoNameArr[0]."-2000k.".$videoNameArr[1], 'www-data');
-                    chgrp($dir2000k.$videoNameArr[0]."-2000k.".$videoNameArr[1], 'www-data');
+                    chown($dir2000k.$videoNameArr[0]."-2000k.".$videoNameArr[1], 'root');
+                    chgrp($dir2000k.$videoNameArr[0]."-2000k.".$videoNameArr[1], 'root');
 
                     $src_2000 = '/UserFiles/'.$video11["user_id"].'/2000k/'.$videoNameArr[0].'/'.$videoNameArr[0].'-2000k.'.$videoNameArr[1];
                     $resEndGen2000 = $sql->_update2_shell6_tasks_shell_tasks($src_2000, $id);
@@ -117,15 +117,15 @@ echo '
                 if (!file_exists($dirQuad2000k1)) {
                     mkdir($dirQuad2000k1, 0755);
                     // меняем юзера и группу папки
-                    chown($dirQuad2000k1, 'www-data');
-                    chgrp($dirQuad2000k1, 'www-data');
+                    chown($dirQuad2000k1, 'root');
+                    chgrp($dirQuad2000k1, 'root');
                 }
                 $dirQuad2000k = __ROOT__.'/UserFiles/'.$video12["user_id"].'/cut/2000k/'.$videoNameArr[0].'/';
                 if (!file_exists($dirQuad2000k)) {
                     mkdir($dirQuad2000k, 0755);
                     // меняем юзера и группу папки
-                    chown($dirQuad2000k, 'www-data');
-                    chgrp($dirQuad2000k, 'www-data');
+                    chown($dirQuad2000k, 'root');
+                    chgrp($dirQuad2000k, 'root');
                 }
                 $steps = $steps+1;
                 $sql->_update_steps_shell_tasks($steps, $id);
@@ -133,11 +133,11 @@ echo '
                     $steps = $steps+1;
                     $sql->_update_steps_shell_tasks($steps, $id);
                     // меняем юзера и группу лога шага
-                    chown($logDir."/step12.txt", 'www-data');
-                    chgrp($logDir."/step12.txt", 'www-data');
+                    chown($logDir."/step12.txt", 'root');
+                    chgrp($logDir."/step12.txt", 'root');
                     // меняем юзера и группу папки логов
-                    chown($dirQuad2000k.$videoNameArr[0]."-q2000k.".$videoNameArr[1], 'www-data');
-                    chgrp($dirQuad2000k.$videoNameArr[0]."-q2000k.".$videoNameArr[1], 'www-data');
+                    chown($dirQuad2000k.$videoNameArr[0]."-q2000k.".$videoNameArr[1], 'root');
+                    chgrp($dirQuad2000k.$videoNameArr[0]."-q2000k.".$videoNameArr[1], 'root');
 
                     $src_quad_2000 = '/UserFiles/'.$video12["user_id"].'/cut/2000k/'.$videoNameArr[0].'/'.$videoNameArr[0].'-q2000k.'.$videoNameArr[1];
                     $resEndGen2000q = $sql->_update4_shell6_tasks_shell_tasks($src_quad_2000, $id);
@@ -167,15 +167,15 @@ echo '
                 if (!file_exists($dirStreamPl2000k)) {
                     mkdir($dirStreamPl2000k, 0755);
                     // меняем юзера и группу папки
-                    chown($dirStreamPl2000k, 'www-data');
-                    chgrp($dirStreamPl2000k, 'www-data');
+                    chown($dirStreamPl2000k, 'root');
+                    chgrp($dirStreamPl2000k, 'root');
                 }
                 $steps = $steps+1;
                 $sql->_update_steps_shell_tasks($steps, $id);
                 if(shell_exec("ffmpeg -y -progress '".$logDir."/step13.txt' -re -i ".__ROOT__.$video13['src_2000']." -codec copy -map 0 -f segment -segment_list '".$dirStreamPl2000k."pl2000.m3u8' -segment_list_flags +live -segment_time 1 -segment_clocktime_offset 1 '".$dirStreamPl2000k.$videoNameArr[0]."-%03d.ts' 2>&1")) {
                     $steps = $steps+2;
                     $sql->_update_steps_shell_tasks($steps, $id);
-                    shell_exec("chown -R www-data:www-data '".$dirStreamPl2000k."*' 2>&1");
+                    shell_exec("chown -R root:root '".$dirStreamPl2000k."*' 2>&1");
                     $steps = $steps+2;
                     $sql->_update_steps_shell_tasks($steps, $id);
                     //echo __ROOT__.$video13['src_noblack'];
@@ -202,8 +202,8 @@ $playlist = '#EXTM3U
                     
                     file_put_contents($file, $playlist);
                     // меняем юзера и группу плейлиста
-                    chown($file, 'www-data');
-                    chgrp($file, 'www-data');
+                    chown($file, 'root');
+                    chgrp($file, 'root');
 
                     $video13Complete = $sql->_update5_shell6_tasks_shell_tasks($id);
 
@@ -299,15 +299,15 @@ echo '
 //                 if (!file_exists($dirStreamCutPl2000k)) {
 //                     mkdir($dirStreamCutPl2000k, 0755);
 //                     // меняем юзера и группу папки
-//                     chown($dirStreamCutPl2000k, 'www-data');
-//                     chgrp($dirStreamCutPl2000k, 'www-data');
+//                     chown($dirStreamCutPl2000k, 'root');
+//                     chgrp($dirStreamCutPl2000k, 'root');
 //                 }
 //                 $steps = $steps+1;
 //                 $sql->_update_steps_shell_tasks($steps, $id);
 //                 if(shell_exec("ffmpeg -y -progress '".$logDir."/step14.txt' -re -i ".__ROOT__.$video14['src_quad_2000']." -codec copy -map 0 -f segment -segment_list '".$dirStreamCutPl2000k."pl2000.m3u8' -segment_list_flags +live -segment_time 1 -segment_clocktime_offset 1 '".$dirStreamCutPl2000k.$videoNameArr[0]."-%03d.ts' 2>&1")) {
 //                     $steps = $steps+2;
 //                     $sql->_update_steps_shell_tasks($steps, $id);
-//                     shell_exec("chown -R www-data:www-data '".$dirStreamCutPl2000k."*' 2>&1");
+//                     shell_exec("chown -R root:root '".$dirStreamCutPl2000k."*' 2>&1");
 //                     $steps = $steps+1;
 //                     $sql->_update_steps_shell_tasks($steps, $id);
 //                     $parseInfoString = shell_exec("ffprobe ".__ROOT__.$video14['src_quad']." -v quiet -show_format -show_streams 2>&1");
@@ -329,8 +329,8 @@ echo '
                     
 //                     file_put_contents($file, $playlist);
 //                     // меняем юзера и группу плейлиста
-//                     chown($file, 'www-data');
-//                     chgrp($file, 'www-data');
+//                     chown($file, 'root');
+//                     chgrp($file, 'root');
 
 //                     $video14Complete = $sql->_update6_shell6_tasks_shell_tasks($id);
 
