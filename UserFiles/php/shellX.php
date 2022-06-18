@@ -645,6 +645,20 @@ echo '
                                             // ----------------------------------------------------------
                                             $resStartGen500 = $sql->_update_shell2_tasks_shell_tasks($id);
 
+                                            $dir500k1 = __ROOT__.'/UserFiles/'.$video3['user_id'].'/500k/';
+                                            if (!file_exists($dir500k1)) {
+                                                mkdir($dir500k1, 0755);
+                                                // меняем юзера и группу папки
+                                                chown($dir500k1, 'www-data');
+                                                chgrp($dir500k1, 'www-data');
+                                            }
+                                            $dir500k = __ROOT__.'/UserFiles/'.$video3['user_id'].'/500k/'.$a[3].'/';
+                                            if (!file_exists($dir500k)) {
+                                                mkdir($dir500k, 0755);
+                                                // меняем юзера и группу папки
+                                                chown($dir500k, 'www-data');
+                                                chgrp($dir500k, 'www-data');
+                                            }
                         // $file = __ROOT__.'/UserFiles/run.txt';
                         // file_put_contents($file, 'Запускаем генерацию видео под поток 500К битрейт (16:9) ', FILE_APPEND);     
                                             $steps = $steps+1;
