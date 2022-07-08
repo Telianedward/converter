@@ -74,7 +74,7 @@ class ShellX {
 
         $cmd = $this->s3->getCommand('GetObject', [
             'Bucket' => $this->bucket,
-            'Key' => $video['user_id'].'/'.$video['src_origin']
+            'Key' => $video['src_origin']
         ]);
         $request = $this->s3->createPresignedRequest($cmd, '+9999 seconds');
         $imgPath = (string)$request->getUri();
