@@ -782,7 +782,7 @@ $playlist = '#EXTM3U
                                                                 }
 
                                                                 $pl1FilesDir500 = __ROOT__.'/UserFiles/'.$video5["user_id"].'/500k/'.$a[3];
-                                                                $UploadAWS1 = $s3->uploadDirectory($pl1FilesDir500, $a[6], $video5["user_id"].'/v/'.$a[3].'/500', array(
+                                                                $UploadAWS1 = $s3->uploadDirectory($pl1FilesDir500, $a[6], 'v/'.$a[3].'/500', array(
                                                                     'concurrency' => 20,
                                                                     'debug'       => true,
                                                                     'before' => function (\Aws\Command $command) {
