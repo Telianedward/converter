@@ -467,13 +467,13 @@ echo '
                                         $s3->putObject(array(
                                             'Bucket'     => $a[6],
                                             'SourceFile' => $posterQuad,
-                                            'Key'        => $a[2].'/v/'.$a[3].'/p/q/n/'.$a[3].'.webp',
+                                            'Key'        => 'v/'.$a[3].'/p/q/n/'.$a[3].'.webp',
                                             'ACL'        => 'public-read'
                                         ));
                                         $s3->putObject(array(
                                             'Bucket'     => $a[6],
                                             'SourceFile' => $posterQBlur,
-                                            'Key'        => $a[2].'/v/'.$a[3].'/p/q/b/'.$a[3].'.webp',
+                                            'Key'        => 'v/'.$a[3].'/p/q/b/'.$a[3].'.webp',
                                             'ACL'        => 'public-read'
                                         ));
                                         echo "
@@ -544,7 +544,7 @@ echo '
                                         $s3->putObject(array(
                                             'Bucket'     => $a[6],
                                             'SourceFile' => $poster,
-                                            'Key'        => $a[2].'/v/'.$a[3].'/p/n/n/'.$a[3].'.webp',
+                                            'Key'        => 'v/'.$a[3].'/p/n/n/'.$a[3].'.webp',
                                             'ACL'        => 'public-read'
                                         ));
                                         unlink($poster);
@@ -552,7 +552,7 @@ echo '
                                         $s3->putObject(array(
                                             'Bucket'     => $a[6],
                                             'SourceFile' => $posterBlur,
-                                            'Key'        => $a[2].'/v/'.$a[3].'/p/n/b/'.$a[3].'.webp',
+                                            'Key'        => 'v/'.$a[3].'/p/n/b/'.$a[3].'.webp',
                                             'ACL'        => 'public-read'
                                         ));
                                         unlink($posterBlur);
@@ -764,7 +764,7 @@ $playlist = '#EXTM3U
                                                                 $s3->putObject(array(
                                                                     'Bucket'     => $a[6],
                                                                     'SourceFile' => $playlist1,
-                                                                    'Key'        => $uid.'/v/'.$a[3].'/m.m3u8',
+                                                                    'Key'        => 'v/'.$a[3].'/m.m3u8',
                                                                     'ACL'        => 'public-read'
                                                                 ));
 
@@ -1104,7 +1104,7 @@ echo '
                                                             $s3->putObject(array(
                                                                 'Bucket'     => $a[6],
                                                                 'SourceFile' => $playlist2,
-                                                                'Key'        => $uid.'/v/'.$vid.'/q.m3u8',
+                                                                'Key'        => 'v/'.$vid.'/q.m3u8',
                                                                 'ACL'        => 'public-read'
                                                             ));
 

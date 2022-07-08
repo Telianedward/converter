@@ -155,12 +155,12 @@ $playlist = '#EXTM3U
                                 $s3->putObject(array(
                                     'Bucket'     => $bucket,
                                     'SourceFile' => $playlist1,
-                                    'Key'        => $uid.'/v/'.$id.'/m.m3u8',
+                                    'Key'        => 'v/'.$id.'/m.m3u8',
                                     'ACL'        => 'public-read'
                                 ));
                                 
                                 // записываем все в MINIO
-                                $UploadAWS2 = $s3->uploadDirectory($pl1FilesDir1000, $bucket, $uid.'/v/'.$id.'/1000', array(
+                                $UploadAWS2 = $s3->uploadDirectory($pl1FilesDir1000, $bucket, 'v/'.$id.'/1000', array(
                                     'concurrency' => 20,
                                     'debug'       => true,
                                     'before' => function (\Aws\Command $command) {

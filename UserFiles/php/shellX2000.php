@@ -237,11 +237,11 @@ $playlist = '#EXTM3U
                     $s3->putObject(array(
                         'Bucket'     => $bucket,
                         'SourceFile' => $playlist1,
-                        'Key'        => $uid.'/v/'.$nameid.'/m.m3u8',
+                        'Key'        => 'v/'.$nameid.'/m.m3u8',
                         'ACL'        => 'public-read'
                     ));
 
-                    $UploadAWS3 = $s3->uploadDirectory($pl1FilesDir2000, $bucket, $uid.'/v/'.$nameid.'/2000', array(
+                    $UploadAWS3 = $s3->uploadDirectory($pl1FilesDir2000, $bucket, 'v/'.$nameid.'/2000', array(
                         'concurrency' => 20,
                         'debug'       => true,
                         'before' => function (\Aws\Command $command) {
