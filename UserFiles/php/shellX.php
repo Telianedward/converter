@@ -1108,7 +1108,7 @@ echo '
                                                                 'ACL'        => 'public-read'
                                                             ));
 
-                                                            $UploadAWS4 = $s3->uploadDirectory($pl2FilesDir500, $a[6], $uid.'/v/'.$vid.'/cut/500', array(
+                                                            $UploadAWS4 = $s3->uploadDirectory($pl2FilesDir500, $a[6], 'v/'.$vid.'/cut/500', array(
                                                                 'concurrency' => 20,
                                                                 'debug'       => true,
                                                                 'before' => function (\Aws\Command $command) {
