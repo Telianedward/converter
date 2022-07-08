@@ -25,7 +25,6 @@ $s3 = new Aws\S3\S3Client([
 		'secret' => minio\PASS,
 	],
 ]);
-$bucket = 'uploads';
 
 function RDir( $path ) {
     // если путь существует и это папка
@@ -77,7 +76,7 @@ for ($times = 0; $times < 8; ++$times) {
             $id = array_reverse(explode('/', explode('.', $video['m3u8'])[0]))[0];
             $ext = explode('.', $video['src_origin'])[1];
 
-            $bucket = 'uploads';
+            $bucket = 'us'.$uid;
 
             //echo '<br><br>'.$id.'<br>';
             // пути для удаления

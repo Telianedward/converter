@@ -44,7 +44,6 @@ class ShellX {
             ],
         ]);
 
-        $this->bucket = 'uploads';
 
         // $videos = array();
 
@@ -59,6 +58,8 @@ class ShellX {
             $key = explode('.', explode('/', $video['src_origin'])[2])[0];
             $sid = $video['id'];
             $uid = $video['user_id'];
+
+            $this->bucket = 'us'.$uid;
             
             $mid = $this->sql->_select_id_shellSave_media_uN($uid, $key);
             $this->sql->_statusSwitch_steps_shell_tasks('1', $uid, $mid, $sid);
