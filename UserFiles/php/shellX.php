@@ -198,8 +198,13 @@ echo '
 var_dump findKey -------------------------------------
 
         ';
-            var_dump(findKey($parseInfoArr, 'width='));
-            var_dump(findKey($parseInfoArr, 'height='));
+        $matches  = preg_grep('/^width=(\w+)/i', $parseInfoArr);
+
+        print_r($matches);
+        
+        $matches2  = preg_grep('/^height=(\w+)/i', $parseInfoArr);
+        
+        print_r($matches2);
 echo '
 
 cropInfo -------------------------------------
