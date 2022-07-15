@@ -184,6 +184,12 @@ echo '
             $parseInfoArr = explode(PHP_EOL, $parseInfoString);
 echo '
 
+cropInfo -------------------------------------
+
+        ';
+            print_r($cropInfo);
+echo '
+
 VIDEO INFO -------------------------------------
 
         ';
