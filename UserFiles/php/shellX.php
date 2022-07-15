@@ -191,7 +191,7 @@ var_dump findKey -------------------------------------
         $matches = preg_grep('/^width=(\w+)/i', $parseInfoArr);
         $w = [];
         foreach ($matches as $v) {
-            $w[1] = explode('=', $v);
+            $w[1] = explode('=', $v)[1];
         }
 
         print_r($w);
@@ -199,7 +199,7 @@ var_dump findKey -------------------------------------
         $matches2 = preg_grep('/^height=(\w+)/i', $parseInfoArr);
         $h = [];
         foreach ($matches2 as $v) {
-            $h[1] = explode('=', $v);
+            $h[1] = explode('=', $v)[1];
         }
         print_r($h);
 echo '
