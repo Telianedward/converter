@@ -187,7 +187,7 @@ echo '
                 return array_keys(
                     array_filter(
                         $arr,
-                        function ($element) {
+                        function ($element, $needle) {
                             return strpos($element, $needle) !== false;
                         }
                     )
@@ -198,7 +198,8 @@ echo '
 var_dump findKey -------------------------------------
 
         ';
-            var_dump(findKey($parseInfoArr, 'data'));
+            var_dump(findKey($parseInfoArr, 'width='));
+            var_dump(findKey($parseInfoArr, 'height='));
 echo '
 
 cropInfo -------------------------------------
