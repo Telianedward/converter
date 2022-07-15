@@ -183,28 +183,25 @@ echo '
             $this->sql->_insert_shell_tasks_shell_steps($videoNameArr[0], '1');
             $parseInfoArr = explode(PHP_EOL, $parseInfoString);
 
-            function findKey($arr, $needle) {
-                return array_keys(
-                    array_filter(
-                        $arr,
-                        function ($element) {
-                            return strpos($element, $needle) !== false;
-                        }
-                    )
-                );
-            }
 echo '
 
 var_dump findKey -------------------------------------
 
         ';
-        $matches  = preg_grep('/^width=(\w+)/i', $parseInfoArr);
+        $matches = preg_grep('/^width=(\w+)/i', $parseInfoArr);
+        $w = [];
+        foreach ($matches as $v) {
+            $w[1] = explode('=', $v);
+        }
 
-        print_r($matches);
+        print_r($w);
         
-        $matches2  = preg_grep('/^height=(\w+)/i', $parseInfoArr);
-        
-        print_r($matches2);
+        $matches2 = preg_grep('/^height=(\w+)/i', $parseInfoArr);
+        $h = [];
+        foreach ($matches2 as $v) {
+            $h[1] = explode('=', $v);
+        }
+        print_r($h);
 echo '
 
 cropInfo -------------------------------------
@@ -222,8 +219,8 @@ echo '
 VIDEO INFO end -------------------------------------
 
         ';
-            $w = explode('=', $parseInfoArr[9]);
-            $h = explode('=', $parseInfoArr[10]);
+            // $w = explode('=', $parseInfoArr[9]);
+            // $h = explode('=', $parseInfoArr[10]);
             $vW = $w[1];
             $vH = $h[1];
 
