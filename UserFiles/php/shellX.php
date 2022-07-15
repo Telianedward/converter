@@ -187,7 +187,7 @@ echo '
                 return array_keys(
                     array_filter(
                         $arr,
-                        function ($element, $needle) {
+                        function ($element) {
                             return strpos($element, $needle) !== false;
                         }
                     )
