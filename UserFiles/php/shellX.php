@@ -182,6 +182,23 @@ echo '
             $this->sql->_update_steps_shell_tasks($steps, $id);
             $this->sql->_insert_shell_tasks_shell_steps($videoNameArr[0], '1');
             $parseInfoArr = explode(PHP_EOL, $parseInfoString);
+
+            function findKey($arr, $needle) {
+                return array_keys(
+                    array_filter(
+                        $arr,
+                        function ($element) {
+                            return strpos($element, $needle) !== false;
+                        }
+                    )
+                );
+            }
+echo '
+
+var_dump findKey -------------------------------------
+
+        ';
+            var_dump(findKey($parseInfoArr, 'data'));
 echo '
 
 cropInfo -------------------------------------
@@ -251,6 +268,12 @@ VIDEO INFO end -------------------------------------
             if($p=='w' && $cropW<$cropH) {
                 $cropInfo = 'crop='.$vW.':'.$vH;
             }
+echo '
+
+cropInfo -------------------------------------
+
+        ';
+            print_r($cropInfo);
 
             if($vW > 1280) {
                 $scaleString = trim($cropInfo).",scale=1280:-2";
