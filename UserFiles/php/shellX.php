@@ -752,7 +752,7 @@ echo '
                                                             $sql->_insert_shell_tasks_shell_steps($a[3], '9');
                                                             $sql->_statusSwitch_steps_shell_tasks('2', $uid, $a[9], $a[7]);
                                                             // 1> /var/www/php/out/out".$a[3].".txt
-                                                            shell_exec("ffmpeg -y -re -i '".__ROOT__.$video5['src_500']."' -codec copy -map 0 -f segment -segment_list '".$dirStreamPl500k."pl500.m3u8' -segment_list_flags +live -segment_time 1 -segment_clocktime_offset 1 '".$dirStreamPl500k.$a[3]."-%03d.ts' 1> /var/www/php/out/out".$a[3].".txt 2>&1");
+                                                            shell_exec("ffmpeg -y -re -i '".__ROOT__.$video5['src_500']."' -codec copy -map 0 -f segment -segment_list '".$dirStreamPl500k."pl500.m3u8' -hls_playlist_type vod -segment_list_flags +live -segment_time 1 -segment_clocktime_offset 1 '".$dirStreamPl500k.$a[3]."-%03d.ts' 1> /var/www/php/out/out".$a[3].".txt 2>&1");
                                                             
                                                             //if($shellRes) {
 echo '
@@ -1015,7 +1015,7 @@ echo '
                                                             }
                                                             $steps = $steps+1;
                                                             $sql->_update_steps_shell_tasks($steps, $id);
-                                                            if(shell_exec("ffmpeg -y -re -i ".__ROOT__.$video6['src_quad_500']." -codec copy -map 0 -f segment -segment_list '".$dirStreamCutPl500k."pl500.m3u8' -segment_list_flags +live -segment_time 1 -segment_clocktime_offset 1 '".$dirStreamCutPl500k.$a[3]."-%03d.ts' 2>&1")) {
+                                                            if(shell_exec("ffmpeg -y -re -i ".__ROOT__.$video6['src_quad_500']." -codec copy -map 0 -f segment -segment_list '".$dirStreamCutPl500k."pl500.m3u8' -hls_playlist_type vod -segment_list_flags +live -segment_time 1 -segment_clocktime_offset 1 '".$dirStreamCutPl500k.$a[3]."-%03d.ts' 2>&1")) {
 echo '
 
 -------------  run 4 if 9  -----------------
