@@ -97,7 +97,7 @@ echo '
                                 }
                                 $steps = $steps+1;
                                 $sql->_update_steps_shell_tasks($steps, $id);
-                                shell_exec("ffmpeg -y -re -i ".__ROOT__.$video9['src_1000']." -codec copy -map 0 -f hls -segment_list '".$dirStreamPl1000k."pl1000.m3u8' -hls_playlist_type vod '".$dirStreamPl1000k.$videoNameArr[0]."-%03d.ts' 2>&1");
+                                shell_exec("ffmpeg -y -re -i ".__ROOT__.$video9['src_1000']." -codec copy -map 0 -f segment -segment_list '".$dirStreamPl1000k."pl1000.m3u8' -hls_playlist_type vod -segment_list_flags +live -segment_time 1 -segment_clocktime_offset 1 '".$dirStreamPl1000k.$videoNameArr[0]."-%03d.ts' 2>&1");
                                 $steps = $steps+1;
                                 $sql->_update_steps_shell_tasks($steps, $id);
                                 shell_exec("chown -R www-data:www-data '".$dirStreamPl1000k."*' 2>&1");

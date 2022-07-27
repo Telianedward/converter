@@ -172,7 +172,7 @@ echo '
                 }
                 $steps = $steps+1;
                 $sql->_update_steps_shell_tasks($steps, $id);
-                if(shell_exec("ffmpeg -y -progress '".$logDir."/step13.txt' -re -i ".__ROOT__.$video13['src_2000']." -codec copy -map 0 -f hls -segment_list '".$dirStreamPl2000k."pl2000.m3u8' -hls_playlist_type vod '".$dirStreamPl2000k.$videoNameArr[0]."-%03d.ts' 2>&1")) {
+                if(shell_exec("ffmpeg -y -progress '".$logDir."/step13.txt' -re -i ".__ROOT__.$video13['src_2000']." -codec copy -map 0 -f segment -segment_list '".$dirStreamPl2000k."pl2000.m3u8' -hls_playlist_type vod -segment_list_flags +live -segment_time 1 -segment_clocktime_offset 1 '".$dirStreamPl2000k.$videoNameArr[0]."-%03d.ts' 2>&1")) {
                     $steps = $steps+2;
                     $sql->_update_steps_shell_tasks($steps, $id);
                     shell_exec("chown -R www-data:www-data '".$dirStreamPl2000k."*' 2>&1");
