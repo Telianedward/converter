@@ -752,7 +752,7 @@ echo '
                                                             $sql->_insert_shell_tasks_shell_steps($a[3], '9');
                                                             $sql->_statusSwitch_steps_shell_tasks('2', $uid, $a[9], $a[7]);
                                                             // 1> /var/www/php/out/out".$a[3].".txt
-                                                            shell_exec("ffmpeg -y -re -i '".__ROOT__.$video5['src_500']."' -codec copy -map 0 -f hls -segment_list '".$dirStreamPl500k."pl500.m3u8' -hls_playlist_type vod -segment_list_flags +live -segment_time 1 -segment_clocktime_offset 1 '".$dirStreamPl500k.$a[3]."-%03d.ts' 1> /var/www/php/out/out".$a[3].".txt 2>&1");
+                                                            shell_exec("ffmpeg -y -re -i '".__ROOT__.$video5['src_500']."' -codec copy -map 0 -f hls -segment_list '".$dirStreamPl500k."pl500.m3u8' -hls_playlist_type vod '".$dirStreamPl500k.$a[3]."-%03d.ts' 1> /var/www/php/out/out".$a[3].".txt 2>&1");
                                                             
                                                             //if($shellRes) {
 echo '
