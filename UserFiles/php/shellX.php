@@ -813,6 +813,14 @@ $playlist = '#EXTM3U
                                                                     unlink($del500);
                                                                 }
 
+                                                                $playlist500 = __ROOT__.'/UserFiles/'.$video5["user_id"].'/500k/pl500.m3u8';
+                                                                chmod($playlist500, 0777);
+                                                                $p500Content = file_get_contents($playlist500);
+                                                                $p500ContentNew = str_replace('#EXT-X-MEDIA-SEQUENCE:0','#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-PLAYLIST-TYPE:VOD', $p500Content);
+
+                                                                file_put_contents($playlist500, $p500ContentNew);
+
                                                                 $pl1FilesDir500 = __ROOT__.'/UserFiles/'.$video5["user_id"].'/500k/'.$a[3];
                                                                 $UploadAWS1 = $s3->uploadDirectory($pl1FilesDir500, $a[6], 'v/'.$a[3].'/500', array(
                                                                     'concurrency' => 20,

@@ -158,6 +158,13 @@ $playlist = '#EXTM3U
                                     'Key'        => 'v/'.$id.'/m.m3u8',
                                     'ACL'        => 'public-read'
                                 ));
+
+                                $playlist1000 = __ROOT__.'/UserFiles/'.$uid.'/1000k/pl1000.m3u8';
+                                chmod($playlist1000, 0777);
+                                $p1000Content = file_get_contents($playlist1000);
+                                $p1000ContentNew = str_replace('#EXT-X-MEDIA-SEQUENCE:0','#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-PLAYLIST-TYPE:VOD', $p1000Content);
+                                file_put_contents($playlist1000, $p1000ContentNew);
                                 
                                 // записываем все в MINIO
                                 $UploadAWS2 = $s3->uploadDirectory($pl1FilesDir1000, $bucket, 'v/'.$id.'/1000', array(
