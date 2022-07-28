@@ -241,7 +241,7 @@ $playlist = '#EXTM3U
                         'ACL'        => 'public-read'
                     ));
 
-                    $playlist2000 = __ROOT__.'/UserFiles/'.$uid.'/2000k/pl2000.m3u8';
+                    $playlist2000 = __ROOT__.'/UserFiles/'.$uid.'/2000k/'.$nameid.'/pl2000.m3u8';
                     chmod($playlist2000, 0777);
                     $p2000Content = file_get_contents($playlist2000);
                     $p2000ContentNew = str_replace('#EXT-X-MEDIA-SEQUENCE:0','#EXT-X-MEDIA-SEQUENCE:0

@@ -813,7 +813,7 @@ $playlist = '#EXTM3U
                                                                     unlink($del500);
                                                                 }
 
-                                                                $playlist500 = __ROOT__.'/UserFiles/'.$video5["user_id"].'/500k/pl500.m3u8';
+                                                                $playlist500 = __ROOT__.'/UserFiles/'.$video5["user_id"].'/500k/'.$a[3].'/pl500.m3u8';
                                                                 chmod($playlist500, 0777);
                                                                 $p500Content = file_get_contents($playlist500);
                                                                 $p500ContentNew = str_replace('#EXT-X-MEDIA-SEQUENCE:0','#EXT-X-MEDIA-SEQUENCE:0
